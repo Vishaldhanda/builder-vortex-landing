@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Account() {
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("johndoe@example.com");
+  const [name, setName] = useState("swati");
+  const [email, setEmail] = useState("swati@gmail.com");
   const [orgType, setOrgType] = useState("Company");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
