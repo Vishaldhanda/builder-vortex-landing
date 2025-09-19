@@ -7,6 +7,14 @@ const SAMPLE = SUBMISSIONS;
 
 export default function TransparencyLedger() {
   const navigate = useNavigate();
+  const goBack = () => {
+    // If there's history available, go back. Otherwise fallback to home.
+    if ((window.history.state && (window.history.state as any).idx > 0) || window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  };
   const [page, setPage] = useState(1);
   const pageSize = 5;
 
@@ -26,7 +34,7 @@ export default function TransparencyLedger() {
       <header className="bg-jansoch-orange text-white">
         <div className="container mx-auto px-4 py-3 flex items-center gap-4">
           <button
-            onClick={() => navigate(-1)}
+            onClick={goBack}
             aria-label="Go back"
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded"
           >
