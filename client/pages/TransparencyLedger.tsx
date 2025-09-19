@@ -47,7 +47,7 @@ export default function TransparencyLedger() {
                 </thead>
                 <tbody>
                   {SAMPLE.map((r) => (
-                    <tr key={r.id} className="border-t">
+                    <tr key={r.id} className="border-t hover:bg-gray-50 cursor-pointer" onClick={() => navigate(`/submission/${r.id}`)} role="button">
                       <td className="py-3 text-sm text-gray-700">{r.id}</td>
                       <td className="py-3 text-sm text-gray-700">{r.timestamp}</td>
                       <td className="py-3 text-sm text-gray-700">{r.citizen}</td>
