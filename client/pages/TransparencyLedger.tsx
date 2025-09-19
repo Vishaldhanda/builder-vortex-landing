@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Search, ChevronDown, ChevronLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const SAMPLE = [
   { id: 1, timestamp: "2024-04-19 14:23:45", citizen: "Citizen A", summary: "Improve road infrastructure in urban areas", department: "Transport", status: "Submitted" },
