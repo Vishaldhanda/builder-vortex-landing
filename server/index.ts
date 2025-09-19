@@ -19,5 +19,12 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Comments endpoint for collecting citizen feedback
+  import("./routes/comments").then(mod => {
+    app.post("/api/comments", mod.handleComments);
+  }).catch(err => {
+    console.warn("Comments route failed to register:", err);
+  });
+
   return app;
 }

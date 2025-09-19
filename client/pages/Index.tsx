@@ -1,6 +1,62 @@
-import { ArrowRight, FileText, Users, Eye, TrendingUp } from "lucide-react";
+import React, { useState } from "react";
+import { FileText, Eye, TrendingUp } from "lucide-react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Index() {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setComment("");
+  };
+
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (!name.trim() || !email.trim() || !comment.trim()) {
+      toast({ title: "Missing fields", description: "Please fill name, email and comment.", open: true });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, comment }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error || "Failed to submit comment");
+      }
+
+      const data = await res.json();
+      toast({ title: "Comment submitted", description: "Thank you — your comment has been received.", open: true });
+      resetForm();
+      setOpen(false);
+    } catch (err: any) {
+      toast({ title: "Submission failed", description: String(err.message || err), open: true });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Government Header */}
@@ -29,10 +85,68 @@ export default function Index() {
               legislation development.
             </p>
           </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-jansoch-orange-dark text-white px-8 py-3 rounded-full text-sm font-medium shadow-lg hover:bg-jansoch-orange transition-colors">
-              Submit Your Comments
-            </button>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <button className="bg-jansoch-orange-dark text-white px-8 py-3 rounded-full text-sm font-medium shadow-lg hover:bg-jansoch-orange transition-colors">
+                  Submit Your Comments
+                </button>
+              </DialogTrigger>
+
+              <DialogContent className="max-w-lg">
+                <DialogHeader>
+                  <DialogTitle>Submit Your Comments</DialogTitle>
+                  <DialogDescription>
+                    Share your feedback on consultations. All fields are required.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Name</label>
+                    <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-jansoch-orange"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Email</label>
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-jansoch-orange"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Comment</label>
+                    <textarea
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      rows={4}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-jansoch-orange"
+                      required
+                    />
+                  </div>
+
+                  <DialogFooter>
+                    <div className="flex justify-end gap-3">
+                      <Button variant="outline" onClick={() => setOpen(false)} type="button">Cancel</Button>
+                      <Button type="submit" disabled={loading}>
+                        {loading ? "Submitting..." : "Submit"}
+                      </Button>
+                    </div>
+                  </DialogFooter>
+                </form>
+              </DialogContent>
+            </Dialog>
+
             <button className="border border-jansoch-orange text-jansoch-orange bg-jansoch-cream-light px-8 py-3 rounded-full text-sm font-medium shadow-lg hover:bg-white transition-colors">
               View Transparency Ledger
             </button>
