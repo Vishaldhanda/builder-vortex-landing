@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { FileText, Eye, TrendingUp } from "lucide-react";
 import {
   Dialog,
