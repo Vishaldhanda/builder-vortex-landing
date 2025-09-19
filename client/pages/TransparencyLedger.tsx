@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, ChevronDown, ChevronLeft } from "lucide-react";
 
@@ -6,10 +7,31 @@ const SAMPLE = [
   { id: 2, timestamp: "2024-04-18 09:37:12", citizen: "Citizen B", summary: "Enhance digital literacy programs in schools", department: "Education", status: "Under Review" },
   { id: 3, timestamp: "2024-04-18 11:09:58", citizen: "Citizen C", summary: "Implement online payment system for utilities", department: "Finance", status: "Implemented" },
   { id: 4, timestamp: "2024-04-15 10:44:37", citizen: "Citizen D", summary: "Install more street lighting in rural areas", department: "Rural Development", status: "Submitted" },
+  { id: 5, timestamp: "2024-04-14 12:12:12", citizen: "Citizen E", summary: "Create public bicycle lanes", department: "Transport", status: "Under Review" },
+  { id: 6, timestamp: "2024-04-13 09:22:45", citizen: "Citizen F", summary: "Mandate quarterly sustainability reports", department: "Environment", status: "Submitted" },
+  { id: 7, timestamp: "2024-04-12 08:05:33", citizen: "Citizen G", summary: "Simplify online company registration", department: "Corporate Affairs", status: "Implemented" },
+  { id: 8, timestamp: "2024-04-11 15:45:21", citizen: "Citizen H", summary: "Improve whistleblower protections", department: "Legal", status: "Under Review" },
+  { id: 9, timestamp: "2024-04-10 10:11:00", citizen: "Citizen I", summary: "Extend deadlines for small businesses", department: "Finance", status: "Submitted" },
+  { id: 10, timestamp: "2024-04-09 14:33:10", citizen: "Citizen J", summary: "Standardize ESG disclosures", department: "Corporate Affairs", status: "Implemented" },
+  { id: 11, timestamp: "2024-04-08 09:09:09", citizen: "Citizen K", summary: "Promote remote work policies", department: "Labour", status: "Submitted" },
+  { id: 12, timestamp: "2024-04-07 16:16:16", citizen: "Citizen L", summary: "Support digital payments in rural markets", department: "Finance", status: "Under Review" },
 ];
 
 export default function TransparencyLedger() {
   const navigate = useNavigate();
+  const [page, setPage] = useState(1);
+  const pageSize = 5;
+
+  const total = SAMPLE.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+  const pageData = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return SAMPLE.slice(start, start + pageSize);
+  }, [page]);
+
+  const startIndex = (page - 1) * pageSize + 1;
+  const endIndex = Math.min(page * pageSize, total);
 
   return (
     <div className="min-h-screen bg-jansoch-cream">
@@ -45,7 +67,7 @@ export default function TransparencyLedger() {
                   </tr>
                 </thead>
                 <tbody>
-                  {SAMPLE.map((r) => (
+                  {pageData.map((r) => (
                     <tr key={r.id} className="border-t hover:bg-gray-50 cursor-pointer" onClick={() => navigate(`/submission/${r.id}`)} role="button">
                       <td className="py-3 text-sm text-gray-700">{r.id}</td>
                       <td className="py-3 text-sm text-gray-700">{r.timestamp}</td>
@@ -64,10 +86,11 @@ export default function TransparencyLedger() {
             </div>
 
             <div className="mt-6 flex items-center justify-between text-sm text-gray-600">
-              <div>1-4 of 4</div>
+              <div>{startIndex}-{endIndex} of {total}</div>
               <div className="flex items-center gap-2">
-                <button className="px-3 py-1 border rounded">&lt;</button>
-                <button className="px-3 py-1 border rounded">&gt;</button>
+                <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page <= 1} className={`px-3 py-1 border rounded ${page <= 1 ? 'opacity-50 cursor-not-allowed' : ''}`}>&lt;</button>
+                <div className="text-sm">Page {page} / {totalPages}</div>
+                <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page >= totalPages} className={`px-3 py-1 border rounded ${page >= totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}>&gt;</button>
               </div>
             </div>
           </div>
