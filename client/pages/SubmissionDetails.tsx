@@ -8,9 +8,16 @@ export default function SubmissionDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const goBack = () => {
-    // If there's history available, go back. Otherwise fallback to the main ledger.
+    // Try to go back in history first. If that doesn't change location within 200ms, fallback to the ledger.
+    const previous = window.location.pathname + window.location.search + window.location.hash;
     if ((window.history.state && (window.history.state as any).idx > 0) || window.history.length > 1) {
       navigate(-1);
+      setTimeout(() => {
+        const current = window.location.pathname + window.location.search + window.location.hash;
+        if (current === previous) {
+          navigate("/transparency-ledger");
+        }
+      }, 200);
     } else {
       navigate("/transparency-ledger");
     }
