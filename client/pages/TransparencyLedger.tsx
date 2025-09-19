@@ -10,6 +10,8 @@ const SAMPLE = [
 ];
 
 export default function TransparencyLedger() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-jansoch-cream">
       <header className="bg-jansoch-orange text-white">
