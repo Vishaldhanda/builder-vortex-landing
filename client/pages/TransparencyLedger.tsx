@@ -12,7 +12,15 @@ export default function TransparencyLedger() {
   return (
     <div className="min-h-screen bg-jansoch-cream">
       <header className="bg-jansoch-orange text-white">
-        <div className="container mx-auto px-4 py-3">
+        <div className="container mx-auto px-4 py-3 flex items-center gap-4">
+          <button
+            onClick={() => navigate(-1)}
+            aria-label="Go back"
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span className="text-sm">Back</span>
+          </button>
           <h1 className="text-2xl font-bold">Transparency Ledger</h1>
         </div>
       </header>
