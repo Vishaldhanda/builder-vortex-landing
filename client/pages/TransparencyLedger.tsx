@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Search, ChevronDown, ChevronLeft } from "lucide-react";
 
 const SAMPLE = [
