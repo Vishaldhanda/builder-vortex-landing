@@ -92,12 +92,65 @@ export default function Index() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onClick={goToLedger}
-              className="bg-jansoch-orange-dark text-white px-8 py-3 rounded-full text-sm font-medium shadow-lg hover:bg-jansoch-orange transition-colors"
-            >
-              Submit Your Comments
-            </button>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <button className="bg-jansoch-orange-dark text-white px-8 py-3 rounded-full text-sm font-medium shadow-lg hover:bg-jansoch-orange transition-colors">
+                  Submit Your Comments
+                </button>
+              </DialogTrigger>
+
+              <DialogContent className="max-w-lg">
+                <DialogHeader>
+                  <DialogTitle>Submit Your Comments</DialogTitle>
+                  <DialogDescription>
+                    Share your feedback on consultations. All fields are required.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Name</label>
+                    <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-jansoch-orange"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Email</label>
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-jansoch-orange"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Comment</label>
+                    <textarea
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      rows={4}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-jansoch-orange"
+                      required
+                    />
+                  </div>
+
+                  <DialogFooter>
+                    <div className="flex justify-end gap-3">
+                      <Button variant="outline" onClick={() => setOpen(false)} type="button">Cancel</Button>
+                      <Button type="submit" disabled={loading}>
+                        {loading ? "Submitting..." : "Submit"}
+                      </Button>
+                    </div>
+                  </DialogFooter>
+                </form>
+              </DialogContent>
+            </Dialog>
 
             <button
               onClick={goToLedger}
