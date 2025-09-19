@@ -1,52 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 
-const SAMPLE = [
-  {
-    id: 1,
-    timestamp: "2024-04-19 14:23:45",
-    citizen: "Citizen A",
-    summary: "Improve road infrastructure in urban areas",
-    department: "Transport",
-    status: "Submitted",
-    details: "Detailed suggestion to repair potholes and improve public transport connectivity.",
-    reviews: [],
-  },
-  {
-    id: 2,
-    timestamp: "2024-04-18 09:37:12",
-    citizen: "Citizen B",
-    summary: "Enhance digital literacy programs in schools",
-    department: "Education",
-    status: "Under Review",
-    details: "Proposal to include basic computer training in school curriculum.",
-    reviews: [],
-  },
-  {
-    id: 3,
-    timestamp: "2024-04-18 11:09:58",
-    citizen: "Citizen C",
-    summary: "Implement online payment system for utilities",
-    department: "Finance",
-    status: "Implemented",
-    details: "Request to enable online bill payment and receipts for utilities to reduce cash handling.",
-    reviews: [
-      { author: "Ministry Review", text: "Feature implemented across major metro cities.", rating: "positive" },
-      { author: "Citizen Feedback", text: "Made payments easier, very helpful.", rating: "positive" },
-      { author: "NGO Report", text: "Needs wider rollout to rural areas.", rating: "neutral" },
-    ],
-  },
-  {
-    id: 4,
-    timestamp: "2024-04-15 10:44:37",
-    citizen: "Citizen D",
-    summary: "Install more street lighting in rural areas",
-    department: "Rural Development",
-    status: "Submitted",
-    details: "Increase street lights in village main roads to improve safety.",
-    reviews: [],
-  },
-];
+import { SUBMISSIONS } from "@/lib/submissions";
+const SAMPLE = SUBMISSIONS;
 
 export default function SubmissionDetails() {
   const { id } = useParams();
