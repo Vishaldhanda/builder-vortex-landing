@@ -65,9 +65,16 @@ export default function Index() {
     <div className="min-h-screen bg-white">
       {/* Government Header */}
       <header className="bg-jansoch-orange text-white">
-        <div className="container mx-auto px-4 py-3">
-          <h1 className="text-4xl font-bold mb-1">Government of India</h1>
-          <p className="text-xl">Ministry of Corporate Affairs</p>
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold mb-1">Government of India</h1>
+            <p className="text-xl">Ministry of Corporate Affairs</p>
+          </div>
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F5d310de4929540d6bf363ab77f00de45%2F1da8d812a67141f2b21c5e528d1abf4c?format=webp&width=800"
+            alt="Gov Emblem"
+            className="h-10 w-auto ml-4"
+          />
         </div>
       </header>
 
