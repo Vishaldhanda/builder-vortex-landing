@@ -26,7 +26,7 @@ export default function Index() {
     setComment("");
   };
 
-  const handleSubmit = async (e?: React.FormEvent) => {
+  const handleSubmit = async (e?: FormEvent) => {
     e?.preventDefault();
     if (!name.trim() || !email.trim() || !comment.trim()) {
       toast({ title: "Missing fields", description: "Please fill name, email and comment.", open: true });
