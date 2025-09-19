@@ -1,21 +1,9 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, ChevronDown, ChevronLeft } from "lucide-react";
+import { SUBMISSIONS } from "@/lib/submissions";
 
-const SAMPLE = [
-  { id: 1, timestamp: "2024-04-19 14:23:45", citizen: "Citizen A", summary: "Improve road infrastructure in urban areas", department: "Transport", status: "Submitted" },
-  { id: 2, timestamp: "2024-04-18 09:37:12", citizen: "Citizen B", summary: "Enhance digital literacy programs in schools", department: "Education", status: "Under Review" },
-  { id: 3, timestamp: "2024-04-18 11:09:58", citizen: "Citizen C", summary: "Implement online payment system for utilities", department: "Finance", status: "Implemented" },
-  { id: 4, timestamp: "2024-04-15 10:44:37", citizen: "Citizen D", summary: "Install more street lighting in rural areas", department: "Rural Development", status: "Submitted" },
-  { id: 5, timestamp: "2024-04-14 12:12:12", citizen: "Citizen E", summary: "Create public bicycle lanes", department: "Transport", status: "Under Review" },
-  { id: 6, timestamp: "2024-04-13 09:22:45", citizen: "Citizen F", summary: "Mandate quarterly sustainability reports", department: "Environment", status: "Submitted" },
-  { id: 7, timestamp: "2024-04-12 08:05:33", citizen: "Citizen G", summary: "Simplify online company registration", department: "Corporate Affairs", status: "Implemented" },
-  { id: 8, timestamp: "2024-04-11 15:45:21", citizen: "Citizen H", summary: "Improve whistleblower protections", department: "Legal", status: "Under Review" },
-  { id: 9, timestamp: "2024-04-10 10:11:00", citizen: "Citizen I", summary: "Extend deadlines for small businesses", department: "Finance", status: "Submitted" },
-  { id: 10, timestamp: "2024-04-09 14:33:10", citizen: "Citizen J", summary: "Standardize ESG disclosures", department: "Corporate Affairs", status: "Implemented" },
-  { id: 11, timestamp: "2024-04-08 09:09:09", citizen: "Citizen K", summary: "Promote remote work policies", department: "Labour", status: "Submitted" },
-  { id: 12, timestamp: "2024-04-07 16:16:16", citizen: "Citizen L", summary: "Support digital payments in rural markets", department: "Finance", status: "Under Review" },
-];
+const SAMPLE = SUBMISSIONS;
 
 export default function TransparencyLedger() {
   const navigate = useNavigate();
