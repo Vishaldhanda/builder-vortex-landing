@@ -13,6 +13,7 @@ import Submit from "./pages/Submit";
 import TransparencyLedger from "./pages/TransparencyLedger";
 import Contact from "./pages/Contact";
 import Account from "./pages/Account";
+import SubmissionDetails from "./pages/SubmissionDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
