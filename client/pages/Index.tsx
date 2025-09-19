@@ -1,61 +1,11 @@
 import { useState, type FormEvent } from "react";
 import { FileText, Eye, TrendingUp } from "lucide-react";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
-  const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [comment, setComment] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
-
-  const resetForm = () => {
-    setName("");
-    setEmail("");
-    setComment("");
-  };
-
-  const handleSubmit = async (e?: FormEvent) => {
-    e?.preventDefault();
-    if (!name.trim() || !email.trim() || !comment.trim()) {
-      toast({ title: "Missing fields", description: "Please fill name, email and comment.", open: true });
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/comments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, comment }),
-      });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.error || "Failed to submit comment");
-      }
-
-      const data = await res.json();
-      toast({ title: "Comment submitted", description: "Thank you — your comment has been received.", open: true });
-      resetForm();
-      setOpen(false);
-    } catch (err: any) {
-      toast({ title: "Submission failed", description: String(err.message || err), open: true });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const navigate = useNavigate();
+  const goToLedger = () => navigate("/transparency-ledger");
 
   return (
     <div className="min-h-screen bg-white">
