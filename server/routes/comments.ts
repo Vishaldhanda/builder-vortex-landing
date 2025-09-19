@@ -1,5 +1,7 @@
 import { RequestHandler } from "express";
 
+import { RequestHandler } from "express";
+
 export const handleComments: RequestHandler = (req, res) => {
   const { name, email, comment } = req.body || {};
 
