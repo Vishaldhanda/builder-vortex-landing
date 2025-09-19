@@ -14,6 +14,15 @@ export default {
     },
     extend: {
       colors: {
+        // JanSoch brand colors
+        jansoch: {
+          orange: "#CF760A",
+          "orange-dark": "#CE7511",
+          blue: "#011828",
+          "blue-dark": "#01182A",
+          cream: "#F7F3E8",
+          "cream-light": "#F4F4EA",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
