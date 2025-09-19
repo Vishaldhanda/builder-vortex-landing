@@ -7,6 +7,14 @@ const SAMPLE = SUBMISSIONS;
 export default function SubmissionDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const goBack = () => {
+    // If there's history available, go back. Otherwise fallback to the main ledger.
+    if ((window.history.state && (window.history.state as any).idx > 0) || window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/transparency-ledger");
+    }
+  };
 
   const record = useMemo(() => SAMPLE.find((s) => String(s.id) === String(id)), [id]);
 
@@ -48,7 +56,7 @@ export default function SubmissionDetails() {
     <div className="min-h-screen bg-jansoch-cream py-12">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-4 mb-6">
-          <button onClick={() => navigate(-1)} className="px-3 py-1 rounded bg-white shadow-sm">Back</button>
+          <button onClick={goBack} className="px-3 py-1 rounded bg-white shadow-sm">Back</button>
           <h1 className="text-2xl font-bold">Submission #{record.id}</h1>
         </div>
 
