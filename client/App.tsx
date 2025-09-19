@@ -51,6 +51,7 @@ const App = () => (
           <Route path="/transparency-ledger" element={<TransparencyLedger />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/submission/:id" element={<SubmissionDetails />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
