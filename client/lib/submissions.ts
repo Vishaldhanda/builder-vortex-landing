@@ -12,3 +12,36 @@ export const SUBMISSIONS = [
   { id: 11, timestamp: "2024-04-08 09:09:09", citizen: "Citizen K", summary: "Promote remote work policies", department: "Labour", status: "Submitted", details: "Encourage flexible work arrangements for employees.", reviews: [] },
   { id: 12, timestamp: "2024-04-07 16:16:16", citizen: "Citizen L", summary: "Support digital payments in rural markets", department: "Finance", status: "Under Review", details: "Encourage digital payment adoption through incentives for merchants.", reviews: [] },
 ];
+
+// Simple subscription model so UI can react to new submissions
+const subscribers: Set<() => void> = new Set();
+
+export function subscribe(fn: () => void) {
+  subscribers.add(fn);
+  return () => subscribers.delete(fn);
+}
+
+export function notify() {
+  subscribers.forEach((s) => s());
+}
+
+export function addSubmission(payload: { name: string; email?: string; organization?: string; state?: string; comment?: string; additional?: string; department?: string; }) {
+  const nextId = SUBMISSIONS.reduce((acc, s) => Math.max(acc, s.id), 0) + 1;
+  const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
+  const summary = (payload.comment || payload.additional || "").slice(0, 100) || "User submission";
+  const newSub = {
+    id: nextId,
+    timestamp,
+    citizen: payload.name || "Anonymous",
+    summary,
+    department: payload.department || payload.organization || "Public",
+    status: "Submitted",
+    details: payload.comment || payload.additional || "",
+    reviews: [],
+  } as any;
+
+  // Add to beginning so recent appears first
+  SUBMISSIONS.unshift(newSub);
+  notify();
+  return newSub;
+}
