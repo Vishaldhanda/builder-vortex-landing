@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -70,6 +71,11 @@ export default function Account() {
                     Clear
                   </Button>
                   <Button type="submit" disabled={loading}>{loading ? "Saving..." : "Update Profile"}</Button>
+                </div>
+
+                <div className="mt-6 flex items-center gap-3">
+                  <Link to="/my-submissions" state={{ name }} className="inline-flex items-center px-3 py-2 bg-jansoch-blue text-white rounded">View Your Submissions</Link>
+                  <Link to="/submit" className="inline-flex items-center px-3 py-2 border rounded">Add New Submission</Link>
                 </div>
               </section>
             </form>
