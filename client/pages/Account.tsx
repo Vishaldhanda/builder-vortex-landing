@@ -13,7 +13,11 @@ export default function Account() {
   const handleUpdate = async (e?: FormEvent) => {
     e?.preventDefault();
     if (!name.trim() || !email.trim()) {
-      toast({ title: "Missing fields", description: "Full name and email are required.", open: true });
+      toast({
+        title: "Missing fields",
+        description: "Full name and email are required.",
+        open: true,
+      });
       return;
     }
 
@@ -21,9 +25,17 @@ export default function Account() {
     try {
       // In a real app you'd call an API to update profile. We'll simulate success.
       await new Promise((r) => setTimeout(r, 600));
-      toast({ title: "Profile updated", description: "Your profile has been saved.", open: true });
+      toast({
+        title: "Profile updated",
+        description: "Your profile has been saved.",
+        open: true,
+      });
     } catch (err: any) {
-      toast({ title: "Update failed", description: String(err?.message || err), open: true });
+      toast({
+        title: "Update failed",
+        description: String(err?.message || err),
+        open: true,
+      });
     } finally {
       setLoading(false);
     }
@@ -36,23 +48,47 @@ export default function Account() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <main className="lg:col-span-2">
-            <form onSubmit={handleUpdate} className="bg-white p-6 rounded shadow space-y-6">
+            <form
+              onSubmit={handleUpdate}
+              className="bg-white p-6 rounded shadow space-y-6"
+            >
               <section>
-                <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
+                <h2 className="text-lg font-semibold mb-4">
+                  Personal Information
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2" />
+                    <label className="block text-sm font-medium text-gray-700">
+                      Full Name
+                    </label>
+                    <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                    />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2" />
+                    <label className="block text-sm font-medium text-gray-700">
+                      Email Address
+                    </label>
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                    />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Organization Type</label>
-                    <select value={orgType} onChange={(e) => setOrgType(e.target.value)} className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Organization Type
+                    </label>
+                    <select
+                      value={orgType}
+                      onChange={(e) => setOrgType(e.target.value)}
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                    >
                       <option>Company</option>
                       <option>Individual</option>
                       <option>NGO</option>
@@ -67,15 +103,39 @@ export default function Account() {
               <section>
                 <h2 className="text-lg font-semibold mb-4">Account Actions</h2>
                 <div className="flex gap-3">
-                  <Button variant="outline" onClick={() => { setName(""); setEmail(""); toast({ title: "Cleared", description: "Form cleared.", open: true }); }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setName("");
+                      setEmail("");
+                      toast({
+                        title: "Cleared",
+                        description: "Form cleared.",
+                        open: true,
+                      });
+                    }}
+                  >
                     Clear
                   </Button>
-                  <Button type="submit" disabled={loading}>{loading ? "Saving..." : "Update Profile"}</Button>
+                  <Button type="submit" disabled={loading}>
+                    {loading ? "Saving..." : "Update Profile"}
+                  </Button>
                 </div>
 
                 <div className="mt-6 flex items-center gap-3">
-                  <Link to="/my-submissions" state={{ name }} className="inline-flex items-center px-3 py-2 bg-jansoch-blue text-white rounded">View Your Submissions</Link>
-                  <Link to="/submit" className="inline-flex items-center px-3 py-2 border rounded">Add New Submission</Link>
+                  <Link
+                    to="/my-submissions"
+                    state={{ name }}
+                    className="inline-flex items-center px-3 py-2 bg-jansoch-blue text-white rounded"
+                  >
+                    View Your Submissions
+                  </Link>
+                  <Link
+                    to="/submit"
+                    className="inline-flex items-center px-3 py-2 border rounded"
+                  >
+                    Add New Submission
+                  </Link>
                 </div>
               </section>
             </form>
@@ -84,13 +144,22 @@ export default function Account() {
           <aside className="space-y-4">
             <div className="bg-white p-4 rounded shadow">
               <h3 className="font-semibold mb-2">Update Profile</h3>
-              <p className="text-sm text-gray-700 mb-4">Keep your profile information up to date to ensure effective communication.</p>
-              <Button onClick={handleUpdate}>{loading ? "Saving..." : "Update Profile"}</Button>
+              <p className="text-sm text-gray-700 mb-4">
+                Keep your profile information up to date to ensure effective
+                communication.
+              </p>
+              <Button onClick={handleUpdate}>
+                {loading ? "Saving..." : "Update Profile"}
+              </Button>
             </div>
 
             <div className="bg-white p-4 rounded shadow">
               <h3 className="font-semibold mb-2">Privacy & Transparency</h3>
-              <p className="text-sm text-gray-700">Your information in this profile will be anonymized and not publicly accessible. Please review our privacy policy for more information.</p>
+              <p className="text-sm text-gray-700">
+                Your information in this profile will be anonymized and not
+                publicly accessible. Please review our privacy policy for more
+                information.
+              </p>
             </div>
 
             <div className="bg-white p-4 rounded shadow">

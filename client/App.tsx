@@ -33,12 +33,29 @@ const App = () => (
             </div>
 
             <nav className="flex items-center gap-6">
-              <Link to="/" className="text-white hover:underline">Home</Link>
-              <Link to="/about" className="text-white hover:underline">About</Link>
-              <Link to="/submit" className="text-white hover:underline">Submit</Link>
-              <Link to="/transparency-ledger" className="text-white hover:underline">View Submissions</Link>
-              <Link to="/contact" className="text-white hover:underline">Contact</Link>
-              <Link to="/account" aria-label="Account" className="ml-4 inline-flex items-center justify-center rounded-full p-1 hover:bg-white/10">
+              <Link to="/" className="text-white hover:underline">
+                Home
+              </Link>
+              <Link to="/about" className="text-white hover:underline">
+                About
+              </Link>
+              <Link to="/submit" className="text-white hover:underline">
+                Submit
+              </Link>
+              <Link
+                to="/transparency-ledger"
+                className="text-white hover:underline"
+              >
+                View Submissions
+              </Link>
+              <Link to="/contact" className="text-white hover:underline">
+                Contact
+              </Link>
+              <Link
+                to="/account"
+                aria-label="Account"
+                className="ml-4 inline-flex items-center justify-center rounded-full p-1 hover:bg-white/10"
+              >
                 <User className="w-5 h-5 text-white" />
               </Link>
             </nav>

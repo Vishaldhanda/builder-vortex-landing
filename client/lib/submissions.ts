@@ -1,16 +1,163 @@
 export const SUBMISSIONS = [
-  { id: 1, timestamp: "2024-04-19 14:23:45", citizen: "Citizen A", summary: "Improve road infrastructure in urban areas", department: "Transport", status: "Submitted", details: "Detailed suggestion to repair potholes and improve public transport connectivity.", reviews: [] },
-  { id: 2, timestamp: "2024-04-18 09:37:12", citizen: "Citizen B", summary: "Enhance digital literacy programs in schools", department: "Education", status: "Under Review", details: "Proposal to include basic computer training in school curriculum.", reviews: [] },
-  { id: 3, timestamp: "2024-04-18 11:09:58", citizen: "Citizen C", summary: "Implement online payment system for utilities", department: "Finance", status: "Implemented", details: "Request to enable online bill payment and receipts for utilities to reduce cash handling.", reviews: [ { author: "Ministry Review", text: "Feature implemented across major metro cities.", rating: "positive" }, { author: "Citizen Feedback", text: "Made payments easier, very helpful.", rating: "positive" }, { author: "NGO Report", text: "Needs wider rollout to rural areas.", rating: "neutral" } ] },
-  { id: 4, timestamp: "2024-04-15 10:44:37", citizen: "Citizen D", summary: "Install more street lighting in rural areas", department: "Rural Development", status: "Submitted", details: "Increase street lights in village main roads to improve safety.", reviews: [] },
-  { id: 5, timestamp: "2024-04-14 12:12:12", citizen: "Citizen E", summary: "Create public bicycle lanes", department: "Transport", status: "Under Review", details: "Proposal to allocate road space for bicycle lanes in urban centers.", reviews: [] },
-  { id: 6, timestamp: "2024-04-13 09:22:45", citizen: "Citizen F", summary: "Mandate quarterly sustainability reports", department: "Environment", status: "Submitted", details: "Request for mandatory sustainability disclosures for large companies.", reviews: [] },
-  { id: 7, timestamp: "2024-04-12 08:05:33", citizen: "Citizen G", summary: "Simplify online company registration", department: "Corporate Affairs", status: "Implemented", details: "Reduce paperwork and streamline digital registration processes.", reviews: [ { author: "Ministry Update", text: "Online registration flow simplified; processing time reduced.", rating: "positive" } ] },
-  { id: 8, timestamp: "2024-04-11 15:45:21", citizen: "Citizen H", summary: "Improve whistleblower protections", department: "Legal", status: "Under Review", details: "Strengthen protections and anonymity for whistleblowers.", reviews: [] },
-  { id: 9, timestamp: "2024-04-10 10:11:00", citizen: "Citizen I", summary: "Extend deadlines for small businesses", department: "Finance", status: "Submitted", details: "Provide extensions for reporting deadlines for SMEs.", reviews: [] },
-  { id: 10, timestamp: "2024-04-09 14:33:10", citizen: "Citizen J", summary: "Standardize ESG disclosures", department: "Corporate Affairs", status: "Implemented", details: "Introduce standardized ESG reporting requirements.", reviews: [ { author: "Industry Body", text: "Standardization helps comparability.", rating: "positive" }, { author: "Small Business Group", text: "Implementation cost is high for small firms.", rating: "neutral" } ] },
-  { id: 11, timestamp: "2024-04-08 09:09:09", citizen: "Citizen K", summary: "Promote remote work policies", department: "Labour", status: "Submitted", details: "Encourage flexible work arrangements for employees.", reviews: [] },
-  { id: 12, timestamp: "2024-04-07 16:16:16", citizen: "Citizen L", summary: "Support digital payments in rural markets", department: "Finance", status: "Under Review", details: "Encourage digital payment adoption through incentives for merchants.", reviews: [] },
+  {
+    id: 1,
+    timestamp: "2024-04-19 14:23:45",
+    citizen: "Citizen A",
+    summary: "Improve road infrastructure in urban areas",
+    department: "Transport",
+    status: "Submitted",
+    details:
+      "Detailed suggestion to repair potholes and improve public transport connectivity.",
+    reviews: [],
+  },
+  {
+    id: 2,
+    timestamp: "2024-04-18 09:37:12",
+    citizen: "Citizen B",
+    summary: "Enhance digital literacy programs in schools",
+    department: "Education",
+    status: "Under Review",
+    details:
+      "Proposal to include basic computer training in school curriculum.",
+    reviews: [],
+  },
+  {
+    id: 3,
+    timestamp: "2024-04-18 11:09:58",
+    citizen: "Citizen C",
+    summary: "Implement online payment system for utilities",
+    department: "Finance",
+    status: "Implemented",
+    details:
+      "Request to enable online bill payment and receipts for utilities to reduce cash handling.",
+    reviews: [
+      {
+        author: "Ministry Review",
+        text: "Feature implemented across major metro cities.",
+        rating: "positive",
+      },
+      {
+        author: "Citizen Feedback",
+        text: "Made payments easier, very helpful.",
+        rating: "positive",
+      },
+      {
+        author: "NGO Report",
+        text: "Needs wider rollout to rural areas.",
+        rating: "neutral",
+      },
+    ],
+  },
+  {
+    id: 4,
+    timestamp: "2024-04-15 10:44:37",
+    citizen: "Citizen D",
+    summary: "Install more street lighting in rural areas",
+    department: "Rural Development",
+    status: "Submitted",
+    details: "Increase street lights in village main roads to improve safety.",
+    reviews: [],
+  },
+  {
+    id: 5,
+    timestamp: "2024-04-14 12:12:12",
+    citizen: "Citizen E",
+    summary: "Create public bicycle lanes",
+    department: "Transport",
+    status: "Under Review",
+    details:
+      "Proposal to allocate road space for bicycle lanes in urban centers.",
+    reviews: [],
+  },
+  {
+    id: 6,
+    timestamp: "2024-04-13 09:22:45",
+    citizen: "Citizen F",
+    summary: "Mandate quarterly sustainability reports",
+    department: "Environment",
+    status: "Submitted",
+    details:
+      "Request for mandatory sustainability disclosures for large companies.",
+    reviews: [],
+  },
+  {
+    id: 7,
+    timestamp: "2024-04-12 08:05:33",
+    citizen: "Citizen G",
+    summary: "Simplify online company registration",
+    department: "Corporate Affairs",
+    status: "Implemented",
+    details: "Reduce paperwork and streamline digital registration processes.",
+    reviews: [
+      {
+        author: "Ministry Update",
+        text: "Online registration flow simplified; processing time reduced.",
+        rating: "positive",
+      },
+    ],
+  },
+  {
+    id: 8,
+    timestamp: "2024-04-11 15:45:21",
+    citizen: "Citizen H",
+    summary: "Improve whistleblower protections",
+    department: "Legal",
+    status: "Under Review",
+    details: "Strengthen protections and anonymity for whistleblowers.",
+    reviews: [],
+  },
+  {
+    id: 9,
+    timestamp: "2024-04-10 10:11:00",
+    citizen: "Citizen I",
+    summary: "Extend deadlines for small businesses",
+    department: "Finance",
+    status: "Submitted",
+    details: "Provide extensions for reporting deadlines for SMEs.",
+    reviews: [],
+  },
+  {
+    id: 10,
+    timestamp: "2024-04-09 14:33:10",
+    citizen: "Citizen J",
+    summary: "Standardize ESG disclosures",
+    department: "Corporate Affairs",
+    status: "Implemented",
+    details: "Introduce standardized ESG reporting requirements.",
+    reviews: [
+      {
+        author: "Industry Body",
+        text: "Standardization helps comparability.",
+        rating: "positive",
+      },
+      {
+        author: "Small Business Group",
+        text: "Implementation cost is high for small firms.",
+        rating: "neutral",
+      },
+    ],
+  },
+  {
+    id: 11,
+    timestamp: "2024-04-08 09:09:09",
+    citizen: "Citizen K",
+    summary: "Promote remote work policies",
+    department: "Labour",
+    status: "Submitted",
+    details: "Encourage flexible work arrangements for employees.",
+    reviews: [],
+  },
+  {
+    id: 12,
+    timestamp: "2024-04-07 16:16:16",
+    citizen: "Citizen L",
+    summary: "Support digital payments in rural markets",
+    department: "Finance",
+    status: "Under Review",
+    details:
+      "Encourage digital payment adoption through incentives for merchants.",
+    reviews: [],
+  },
 ];
 
 // Simple subscription model so UI can react to new submissions
@@ -25,10 +172,20 @@ export function notify() {
   subscribers.forEach((s) => s());
 }
 
-export function addSubmission(payload: { name: string; email?: string; organization?: string; state?: string; comment?: string; additional?: string; department?: string; }) {
+export function addSubmission(payload: {
+  name: string;
+  email?: string;
+  organization?: string;
+  state?: string;
+  comment?: string;
+  additional?: string;
+  department?: string;
+}) {
   const nextId = SUBMISSIONS.reduce((acc, s) => Math.max(acc, s.id), 0) + 1;
   const timestamp = new Date().toISOString().replace("T", " ").split(".")[0];
-  const summary = (payload.comment || payload.additional || "").slice(0, 100) || "User submission";
+  const summary =
+    (payload.comment || payload.additional || "").slice(0, 100) ||
+    "User submission";
   const newSub = {
     id: nextId,
     timestamp,
