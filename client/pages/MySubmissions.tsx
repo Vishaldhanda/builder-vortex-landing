@@ -1,6 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { SUBMISSIONS } from "@/lib/submissions";
+import { SUBMISSIONS, subscribe } from "@/lib/submissions";
 import { ChevronLeft } from "lucide-react";
 
 export default function MySubmissions() {
@@ -8,10 +8,17 @@ export default function MySubmissions() {
   const navigate = useNavigate();
   const name = (location.state as any)?.name || null;
 
+  const [submissions, setSubmissions] = useState(() => [...SUBMISSIONS]);
+
+  useEffect(() => {
+    const unsub = subscribe(() => setSubmissions([...SUBMISSIONS]));
+    return unsub;
+  }, []);
+
   const mySubmissions = useMemo(() => {
-    if (!name) return SUBMISSIONS;
-    return SUBMISSIONS.filter((s) => String(s.citizen).toLowerCase().includes(String(name).toLowerCase()));
-  }, [name]);
+    if (!name) return submissions;
+    return submissions.filter((s) => String(s.citizen).toLowerCase().includes(String(name).toLowerCase()));
+  }, [name, submissions]);
 
   return (
     <div className="min-h-screen bg-jansoch-cream">
