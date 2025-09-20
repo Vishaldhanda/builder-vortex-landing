@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import { addSubmission } from "@/lib/submissions";
+import { useNavigate } from "react-router-dom";
 
 export default function Submit() {
   const [name, setName] = useState("");
@@ -12,6 +14,7 @@ export default function Submit() {
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const resetForm = () => {
     setName("");
@@ -44,8 +47,12 @@ export default function Submit() {
       }
 
       await res.json();
+      // Add to local ledger so it appears in My Submissions
+      addSubmission({ name, email, organization, state: stateVal, comment, additional });
       toast({ title: "Comment submitted", description: "Thank you — your comment has been received.", open: true });
       resetForm();
+      // Navigate to user's submissions page
+      navigate('/my-submissions', { state: { name } });
     } catch (err: any) {
       toast({ title: "Submission failed", description: String(err.message || err), open: true });
     } finally {
